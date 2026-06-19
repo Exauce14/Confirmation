@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmation of Baraka</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+  :root{
+    --ink:#1c2a2e;
+    --gold:#a8843f;
+    --gold-light:#cfa85e;
+    --deep:#173b3e;
+    --deep-2:#0f2729;
+    --cream:#f6f1e6;
+    --line: rgba(168,132,63,0.35);
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--deep-2);
+    color:var(--ink);
+    font-family:'EB Garamond', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .stage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:48px 20px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(207,168,94,0.10), transparent 60%),
+      linear-gradient(180deg, var(--deep) 0%, var(--deep-2) 100%);
+  }
+
+  .card{
+    position:relative;
+    width:100%;
+    max-width:680px;
+    background:var(--cream);
+    border-radius:2px;
+    box-shadow:0 40px 80px -20px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+    overflow:hidden;
+  }
+
+  /* ornamental frame */
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .card::after{
+    content:"";
+    position:absolute;
+    inset:22px;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+
+  .inner{
+    position:relative;
+    padding:64px 56px 52px;
+    text-align:center;
+  }
+
+  @media (max-width: 540px){
+    .inner{ padding:48px 28px 40px; }
+  }
+
+  .emblem{
+    width:54px;
+    height:54px;
+    margin:0 auto 22px;
+    position:relative;
+  }
+  .emblem svg{ width:100%; height:100%; display:block; }
+
+  .eyebrow{
+    font-family:'EB Garamond', serif;
+    font-style:italic;
+    font-size:14px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 6px;
+  }
+
+  .church{
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:#5c6b63;
+    margin:0 0 36px;
+  }
+
+  .salutation{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:30px;
+    color:var(--deep);
+    margin:0 0 4px;
+    letter-spacing:0.01em;
+  }
+  .salutation .name{
+    color:var(--gold);
+    font-style:italic;
+  }
+
+  hr.rule{
+    width:64px;
+    height:1px;
+    background:var(--gold-light);
+    border:none;
+    margin:18px auto 30px;
+  }
+
+  .message{
+    font-size:18.5px;
+    line-height:1.75;
+    color:#28363a;
+    text-align:left;
+    margin:0 auto;
+    max-width:540px;
+  }
+
+  .message p{ margin:0 0 20px; }
+  .message p:last-of-type{ margin-bottom:0; }
+
+  .message strong{ color:var(--deep); font-weight:600; }
+
+  .verse{
+    margin:34px auto 0;
+    max-width:480px;
+    padding:24px 28px;
+    background:rgba(168,132,63,0.07);
+    border-left:2px solid var(--gold);
+    text-align:left;
+  }
+  .verse p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.6;
+    color:var(--deep);
+    margin:0 0 8px;
+  }
+  .verse cite{
+    font-style:normal;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .closing{
+    margin-top:38px;
+    text-align:left;
+    max-width:480px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .closing .lead{
+    font-size:18.5px;
+    line-height:1.75;
+    color:#28363a;
+    margin:0 0 22px;
+  }
+  .signoff-label{
+    font-size:13px;
+    font-style:italic;
+    color:#5c6b63;
+    margin:0 0 2px;
+  }
+  .signoff-name{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:21px;
+    color:var(--deep);
+    letter-spacing:0.01em;
+  }
+
+  .footer{
+    margin-top:48px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+  }
+
+  .qr-wrap{
+    background:#fff;
+    padding:8px;
+    border:1px solid var(--line);
+    border-radius:2px;
+  }
+  .qr-wrap img{
+    display:block;
+    width:84px;
+    height:84px;
+  }
+
+  .footer-text{
+    text-align:left;
+    font-size:12px;
+    letter-spacing:0.05em;
+    color:#7a877f;
+    line-height:1.6;
+  }
+  .footer-text .date{
+    color:var(--gold);
+    font-style:italic;
+  }
+
+  @media print{
+    body{ background:#fff; }
+    .stage{ padding:0; background:#fff; }
+    .card{ box-shadow:none; max-width:100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="card">
+      <div class="inner">
+
+        <div class="emblem">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" stroke="#a8843f" stroke-width="1"/>
+            <path d="M30 14 L30 46 M18 22 L42 22" stroke="#a8843f" stroke-width="1.3" stroke-linecap="round"/>
+            <path d="M30 14 C24 20, 24 28, 30 30 C36 28, 36 20, 30 14 Z" fill="#a8843f" opacity="0.85"/>
+          </svg>
+        </div>
+
+        <p class="eyebrow">Confirmation</p>
+        <p class="church">New Apostolic Church</p>
+
+        <h1 class="salutation">Dear <span class="name">Baraka</span>,</h1>
+        <hr class="rule">
+
+        <div class="message">
+          <p>Today is a day of grace and joy.</p>
+          <p>In our New Apostolic Church, confirmation is not simply a milestone, but a <strong>blessing</strong> that God grants you to strengthen you and walk beside you in your life of faith.</p>
+          <p>From this day forward, you are called to take personal responsibility for your faith: to choose God, to seek Him, and to walk with Him.</p>
+          <p>Do not be afraid to have your own experiences with God. Seek Him sincerely, and you will discover that He is alive, that He answers, and that He is at work in your life.</p>
+          <p>Always remember: <strong>Jesus Christ is with you. He will never abandon you.</strong></p>
+        </div>
+
+        <div class="verse">
+          <p>&ldquo;And surely I am with you always, to the very end of the age.&rdquo;</p>
+          <cite>— Matthew 28:20</cite>
+        </div>
+
+        <div class="closing">
+          <p class="lead">May this blessing accompany you every day and guide you throughout your life.</p>
+          <p class="signoff-label">With love and blessings,</p>
+          <p class="signoff-name">Deacon Exaucé NGOLO</p>
+        </div>
+
+        <div class="footer">
+          <div class="qr-wrap">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwCAYAAAA+VemSAAAAAklEQVR4AewaftIAAAjESURBVO3B0akk2Q5FwdWijJAxAtkukDHyol//zcercyGT7KI0syN+/f4DEVnJEJG1DBFZyxCRtQwRWcsQkbUMEVnrxQ88ks2mi/8ij+RkurjDI7lqurjDIzmZLu7wSDabLt4xRGQtQ0TWMkRkLUNE1jJEZC1DRNZ6cdN08Q08kqd5JCfTxYlHctV0cYdH8jSP5GS6+JTp4lOmi2/hkVxliMhahoisZYjIWoaIrGWIyFqGiKz14i/wSJ42XTzJI3nadPEkj+RkujjxSO6YLp7kkXzSdPEkj+Rp08WTDBFZyxCRtQwRWcsQkbUMEVnLEJG1Xsj/mS5OPJInTRcn08Ud08UdHslV08XJdHHikZxMFyceifzDEJG1DBFZyxCRtQwRWcsQkbUMEVnrhTxmujjxSN7xSD5pujiZLq7ySO6YLk48kpPpQv5hiMhahoisZYjIWoaIrGWIyFqGiKz14i+YLjbzSE6mixOP5GS6eMcjuWO6+CSP5J3p4sQjOfFITqaLbzBdfDtDRNYyRGQtQ0TWMkRkLUNE1npxk0fybzVdnHgkJ9PFiUfyznRx4pHc4ZGcTBcnHsnJdPGOR3IyXZx4JHd4JCfTxVUeyWaGiKxliMhahoisZYjIWoaIrGWIyFovfjBd/Bd5JCfTxYlHcjJdXDVdfNJ0ceKRXOWRfIvp4t/IEJG1DBFZyxCRtQwRWcsQkbUMEVnrxQ88kpPp4sQj+QbTxcl08Q08kjumi5Pp4sQjOZkurpouNvBIvsF08SRDRNYyRGQtQ0TWMkRkLUNE1jJEZK0XN3kkd0wXJx7JyXRxlUfytOniU6aLOzySOzySqzyST5ouPmW6OPFInuaRnEwX7xgispYhImsZIrKWISJrGSKyliEia/36/QcLeCRPmi5OPJI7posTj+TbTRdP8khOpouneSRXTRcnHsnJdHHikdwxXVxliMhahoisZYjIWoaIrGWIyFqGiKz16/cfPMwjOZkuTjySk+niKo/kZLr4Bh7JyXTxNI/kjuniHY/kadPF0zySd6aLE4/kadPFiUdyMl28Y4jIWoaIrGWIyFqGiKxliMhahois9ev3Hxx4JHdMF5/ikdwxXdzhkZxMFyceyTvTxYlH8rTpYjOP5GS6uMojedp08SmGiKxliMhahoisZYjIWoaIrPXiB9PFiUdy4pHcMV2ceCTvTBd3eCR3TBcnHsnJdPGOR3IyXZx4JCfTxR0eycl0cZVHcjJdnHgkJ9PFHR7JO9PFHR7JHR7JHdPFO4aIrGWIyFqGiKxliMhahoisZYjIWi+W80hOpouT6eLEI9nMI9lsujjxSD7FI7nDI7ljurjKEJG1DBFZyxCRtQwRWcsQkbUMEVnrxQ88kpPp4sQjOZkuTjySk+niKo/kk6aLE4/kU6aLOzySqzySOzyS/6Lp4kmGiKxliMhahoisZYjIWoaIrGWIyFovfjBdPM0jucMjuWq6OPFITqaLE49kM4/kDo/kqunikzySk+niHY/kjuniaR7JyXTxjiEiaxkispYhImsZIrKWISJrGSKy1osPmy5OPJKrpotPmi5OPJJv4JGcTBcnHsmneCR3TBcn08WJR3LVdHHikXwDQ0TWMkRkLUNE1jJEZC1DRNYyRGStFz/wSJ7mkZxMF1d5JHdMFyceycl0ccd0cZVH8i2mi3c8kqdNF3d4JE/ySE6mixOP5I7p4ipDRNYyRGQtQ0TWMkRkLUNE1jJEZK0XX8QjuWq6uMMjOZkuTjyST5ku7vBI7pgurpouTjySk+niDo/kG3gk38AQkbUMEVnLEJG1DBFZyxCRtX79/oMbPJKT6eLEI7ljunjHI/mk6eLEIzmZLt7xSE6mi0/ySK6aLu7wSE6mizs8kpPp4h2P5GnTxR0eycl08Y4hImsZIrKWISJrGSKyliEiaxkistaLH3gkJ9PFHdPFHR7JO9PFiUfySdPFiUfyznRxh0fytOnixCN5xyO5Y7o48UhOpouT6eLEI3lnuniaR3IyXTzJEJG1DBFZyxCRtQwRWcsQkbUMEVnr1+8/OPBITqaLE4/kG0wX384juWO6uMMjOZkurvJInjZd3OGRnEwXT/JInjZdXGWIyFqGiKxliMhahoisZYjIWoaIrPXiL5gu7vBITqaLJ3kkJ9PFiUdyx3TxKR7JyXRx4pGcTBdPmi7u8Eie5JF8C4/kZLp4xxCRtQwRWcsQkbUMEVnLEJG1DBFZ68USHslV08W38EjemS6eNl2ceCQn08WJR/LOdLGBR/Ip08WnGCKyliEiaxkispYhImsZIrKWISJr/fr9B/9BHslm08UdHsmnTBdP80hOposneSQn08WJR3IyXZx4JCfTxTuGiKxliMhahoisZYjIWoaIrGWIyFovfuCRbDZdnEwXd3gkJ9PFp3gkT5survJITjySk+nixCN5mkfyznTxSR7JyXRxlSEiaxkispYhImsZIrKWISJrvbhpuvgGHskdHsnJdPE0j+RJ08WJR3KHR/JvNV08ySO5Y7o48UhOpot3DBFZyxCRtQwRWcsQkbUMEVnLEJG1XvwFHsnTpotvMF2ceCTfbrr4Bh7JyXRx4pGceCTfYLo48UhOpourDBFZyxCRtQwRWcsQkbUMEVnLEJG1Xsj/8UjumC6e5JGceCQn08WJR/Ip08W3mC6u8kju8Eju8EhOpot3DBFZyxCRtQwRWcsQkbUMEVnLEJG1Xsgl08WJR3LVdPE0j+RkujjxSE6mi28wXZx4JCceyVXTxR0eycl08SRDRNYyRGQtQ0TWMkRkLUNE1jJEZK0Xf8F08e2mi0+aLt7xSJ42XdwxXVzlkdwxXTxtuniSR/LtDBFZyxCRtQwRWcsQkbUMEVnLEJG1XtzkkWzmkdwxXZxMFyceyTvTxYlH8jSP5GS6uGq6uMMjedp0ceKRXDVdPM0jOZkurjJEZC1DRNYyRGQtQ0TWMkRkLUNE1vr1+w9EZCVDRNYyRGQtQ0TWMkRkLUNE1vof05nXDSrYk6MAAAAASUVORK5CYII=" alt="QR code">
+          </div>
+          <div class="footer-text">
+            Personal confirmation message<br>
+            <span class="date">June 2026</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

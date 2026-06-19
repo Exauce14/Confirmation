@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmation de Sarvie</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+  :root{
+    --ink:#1c2a2e;
+    --gold:#a8843f;
+    --gold-light:#cfa85e;
+    --deep:#173b3e;
+    --deep-2:#0f2729;
+    --cream:#f6f1e6;
+    --line: rgba(168,132,63,0.35);
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--deep-2);
+    color:var(--ink);
+    font-family:'EB Garamond', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .stage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:48px 20px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(207,168,94,0.10), transparent 60%),
+      linear-gradient(180deg, var(--deep) 0%, var(--deep-2) 100%);
+  }
+
+  .card{
+    position:relative;
+    width:100%;
+    max-width:680px;
+    background:var(--cream);
+    border-radius:2px;
+    box-shadow:0 40px 80px -20px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+    overflow:hidden;
+  }
+
+  /* ornamental frame */
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .card::after{
+    content:"";
+    position:absolute;
+    inset:22px;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+
+  .inner{
+    position:relative;
+    padding:64px 56px 52px;
+    text-align:center;
+  }
+
+  @media (max-width: 540px){
+    .inner{ padding:48px 28px 40px; }
+  }
+
+  .emblem{
+    width:54px;
+    height:54px;
+    margin:0 auto 22px;
+    position:relative;
+  }
+  .emblem svg{ width:100%; height:100%; display:block; }
+
+  .eyebrow{
+    font-family:'EB Garamond', serif;
+    font-style:italic;
+    font-size:14px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 6px;
+  }
+
+  .church{
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:#5c6b63;
+    margin:0 0 36px;
+  }
+
+  .salutation{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:30px;
+    color:var(--deep);
+    margin:0 0 4px;
+    letter-spacing:0.01em;
+  }
+  .salutation .name{
+    color:var(--gold);
+    font-style:italic;
+  }
+
+  hr.rule{
+    width:64px;
+    height:1px;
+    background:var(--gold-light);
+    border:none;
+    margin:18px auto 30px;
+  }
+
+  .message{
+    font-size:18.5px;
+    line-height:1.75;
+    color:#28363a;
+    text-align:left;
+    margin:0 auto;
+    max-width:540px;
+  }
+
+  .message p{ margin:0 0 20px; }
+  .message p:last-of-type{ margin-bottom:0; }
+
+  .message strong{ color:var(--deep); font-weight:600; }
+
+  .verse{
+    margin:34px auto 0;
+    max-width:480px;
+    padding:24px 28px;
+    background:rgba(168,132,63,0.07);
+    border-left:2px solid var(--gold);
+    text-align:left;
+  }
+  .verse p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.6;
+    color:var(--deep);
+    margin:0 0 8px;
+  }
+  .verse cite{
+    font-style:normal;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .closing{
+    margin-top:38px;
+    text-align:left;
+    max-width:480px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .closing .lead{
+    font-size:18.5px;
+    line-height:1.75;
+    color:#28363a;
+    margin:0 0 22px;
+  }
+  .signoff-label{
+    font-size:13px;
+    font-style:italic;
+    color:#5c6b63;
+    margin:0 0 2px;
+  }
+  .signoff-name{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:21px;
+    color:var(--deep);
+    letter-spacing:0.01em;
+  }
+
+  .footer{
+    margin-top:48px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+  }
+
+  .qr-wrap{
+    background:#fff;
+    padding:8px;
+    border:1px solid var(--line);
+    border-radius:2px;
+  }
+  .qr-wrap img{
+    display:block;
+    width:84px;
+    height:84px;
+  }
+
+  .footer-text{
+    text-align:left;
+    font-size:12px;
+    letter-spacing:0.05em;
+    color:#7a877f;
+    line-height:1.6;
+  }
+  .footer-text .date{
+    color:var(--gold);
+    font-style:italic;
+  }
+
+  @media print{
+    body{ background:#fff; }
+    .stage{ padding:0; background:#fff; }
+    .card{ box-shadow:none; max-width:100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="card">
+      <div class="inner">
+
+        <div class="emblem">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" stroke="#a8843f" stroke-width="1"/>
+            <path d="M30 14 L30 46 M18 22 L42 22" stroke="#a8843f" stroke-width="1.3" stroke-linecap="round"/>
+            <path d="M30 14 C24 20, 24 28, 30 30 C36 28, 36 20, 30 14 Z" fill="#a8843f" opacity="0.85"/>
+          </svg>
+        </div>
+
+        <p class="eyebrow">Confirmation</p>
+        <p class="church">Église néo-apostolique</p>
+
+        <h1 class="salutation">Chère <span class="name">Sarvie</span>,</h1>
+        <hr class="rule">
+
+        <div class="message">
+          <p>Aujourd'hui est un jour de grâce et de joie.</p>
+          <p>Dans notre Église néo-apostolique, la confirmation n'est pas simplement une étape, mais une <strong>bénédiction</strong> que Dieu t'accorde pour te fortifier et t'accompagner dans ta vie de foi.</p>
+          <p>À partir de ce jour, tu es appelée à prendre personnellement la responsabilité de ta foi : choisir Dieu, Le chercher et marcher avec Lui.</p>
+          <p>N'aie pas peur de faire tes propres expériences avec Dieu. Cherche-Le sincèrement, et tu découvriras qu'Il est vivant, qu'Il répond et qu'Il agit dans ta vie.</p>
+          <p>Souviens-toi toujours : <strong>Jésus-Christ est avec toi. Il ne t'abandonnera jamais.</strong></p>
+        </div>
+
+        <div class="verse">
+          <p>&laquo;&nbsp;Et voici, je suis avec vous tous les jours, jusqu'à la fin du monde.&nbsp;&raquo;</p>
+          <cite>— Matthieu 28:20</cite>
+        </div>
+
+        <div class="closing">
+          <p class="lead">Que cette bénédiction t'accompagne chaque jour et te guide tout au long de ta vie.</p>
+          <p class="signoff-label">Avec amour et bénédictions,</p>
+          <p class="signoff-name">Diacre Exaucé NGOLO</p>
+        </div>
+
+        <div class="footer">
+          <div class="qr-wrap">
+            <img src="data:image/png;base64,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" alt="QR code">
+          </div>
+          <div class="footer-text">
+            Message personnel de confirmation<br>
+            <span class="date">Juin 2026</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
